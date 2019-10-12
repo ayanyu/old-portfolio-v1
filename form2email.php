@@ -1,22 +1,32 @@
 
-
 <?php
 
-if (isset($_POST['submit'])) {
-$name = $_POST['name'];
-$subject = $_POST['subject'];
-$mailFrom = $_POST['email'];
-$message = $_POST['message'];
+if( isset($_POST['Submit']) ) {
+// Contact subject
+$subject =$_POST["subject"];
+// Details
+$message=$_POST["message"];
 
-$mailTo = "ayanhaibeh@gmail.com";
-$headers = "From: ".$mailFrom;
-$txt = "You have received an e-mail from ".$name.".\n\n".$message;
+$name=$_POST["name"];
+// Mail of sender
+$mail_from=$_POST["email"];
+// From
+$header="from: $name <$mail_from>";
 
-mail($mailTo, $subject, $txt, $headers);
-header("Location: index.php?mailsend");
+// Enter your email address
+$to ='ayanhaibeh@gmail.com';
+
+$send_contact=mail($to,$subject,$message,$header);
+}
+// Check, if message sent to your email
+// display message "We've recived your information"
+if($send_contact){
+echo "We've recived your contact information";
+}
+else {
+echo "ERROR";
 }
 ?>
-
 
 
 
