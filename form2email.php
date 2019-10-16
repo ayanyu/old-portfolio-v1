@@ -13,7 +13,7 @@ $mail_from="$email";
 $header="from: $name <$mail_from>";
 
 // Enter your email address
-$to ='ayanhaibeh@gmail.com';
+$to ='ayanhai@outlook.com';
 
 $send_contact=mail($to,$subject,$message,$header);
 
