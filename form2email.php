@@ -1,29 +1,35 @@
 
 <?php
+if (isset($_POST['name']) && isset($_POST['email'])) {
+ $name = $_POST['name'];
+ $email = $_POST['email'];
+ $to = 'ayanhai@outlook.com';
+ $subject = "New Message on Website";
+  $send = $_POST['submit'];
+ $messsage = '<html>
+    <body>
+     <h2>Title</h2>
+     <br>
+     <p>Name:<br>'.$name.'</p>
+     <p>Email:<br>'.$email.'</p>
 
-if( isset($_POST['Submit']) ) {
-// Contact subject
-$subject ="$subject";
-// Details
-$message="$message";
+    </body>
+   </html>';
 
-// Mail of sender
-$mail_from="$email";
-// From
-$header="from: $name <$mail_from>";
+//headers
+$headers  = "From: ".$name." <".$email.">\r\n";
+$headers .= "Reply-To: ".$email."\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-type: text/html; charset-utf-8";
 
-// Enter your email address
-$to ='ayanhai@outlook.com';
-
-$send_contact=mail($to,$subject,$message,$header);
-
-// Check, if message sent to your email
-// display message "We've recived your information"
-if($send_contact){
-echo "We've recived your contact information";
+//send
+$send = mail($to, $subject, $message, $headers);
+if ($send) {
+ echo '<br>';
+ echo "Success. Thanks for Your Message.";
+} else {
+ echo 'Error.';
 }
-else {
-echo "ERROR";
 }
 ?>
 
